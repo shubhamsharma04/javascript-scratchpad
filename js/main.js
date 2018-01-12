@@ -1,27 +1,34 @@
+
 let todosObject ={
 	
-todos : ['item1','item2','item3'],
+todos : [{todoText:'item1',isComplete :false},{todoText:'item2',isComplete :false},{todoText:'item3',isComplete :false}],
 
 displayTodos () {
 	this.todos.map(todo => console.log(todo))
 },
 
-addTodos  (item) {
-	this.todos.push(item);
-	this.displayTodos(this.todos);
+addTodos  (todoText) {
+	this.todos.push({todoText : todoText, isComplete : false});
+	this.displayTodos();
 },
 
-changeTodos (position,item) {
-	this.todos[position] = item;
-	this.displayTodos(this.todos);
+changeTodos (position,todoText) {
+	this.todos[position].todoText = todoText;
+	this.displayTodos();
 },
 
 deleteTodos (position) {
-	this.todos.splice(position,1)
-	this.displayTodos(this.todos);
+	this.todos.splice(position,1);
+	this.displayTodos();
+},
+
+toggleCompleted (position) {
+	this.todos[position].isComplete = true;
+	this.displayTodos();
 }
 }
 
 
 todosObject.addTodos('itemx');
-todosObject.deleteTodos(todosObject.todos,3);
+todosObject.deleteTodos(3);
+todosObject.toggleCompleted(2);
