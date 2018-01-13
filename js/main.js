@@ -7,7 +7,7 @@ displayTodos () {
 	let numTodos = this.todos.length;
 	
 	if(numTodos){
-	this.todos.map(todo => console.log(todo.isComplete,todo.todoText))
+	this.todos.forEach(todo => console.log(todo.isComplete,todo.todoText))
 	} else {
 		console.log("No Todos");
 	}
@@ -31,10 +31,30 @@ deleteTodos (position) {
 toggleCompleted (position) {
 	this.todos[position].isComplete = true;
 	this.displayTodos();
+},
+
+toggleAll(){
+	let isComplete = true;
+	
+	this.todos.forEach(todo => isComplete = isComplete && todo.isComplete===true)
+	
+	if(isComplete === true) {
+		this.todos.forEach(todo => todo.isComplete = false)
+	} else {
+		this.todos.forEach(todo => todo.isComplete = true)
+	
+	
+
+}
+	this.displayTodos();
 }
 }
 
 
-todosObject.addTodos('itemx');
-todosObject.deleteTodos(3);
+//todosObject.addTodos('itemx');
+//todosObject.deleteTodos(3);
+
 todosObject.toggleCompleted(2);
+todosObject.toggleAll();
+
+//todosObject.toggleAll();
