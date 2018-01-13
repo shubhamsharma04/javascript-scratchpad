@@ -4,7 +4,13 @@ let todosObject ={
 todos : [{todoText:'item1',isComplete :false},{todoText:'item2',isComplete :false},{todoText:'item3',isComplete :false}],
 
 displayTodos () {
-	this.todos.map(todo => console.log(todo))
+	let numTodos = this.todos.length;
+	
+	if(numTodos){
+	this.todos.map(todo => console.log(todo.isComplete,todo.todoText))
+	} else {
+		console.log("No Todos");
+	}
 },
 
 addTodos  (todoText) {
