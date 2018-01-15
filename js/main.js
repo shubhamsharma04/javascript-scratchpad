@@ -51,10 +51,10 @@ toggleAll(){
 }
 
 
-//todosObject.addTodos('itemx');
-//todosObject.deleteTodos(3);
+let displyTodoList = document.getElementById('displayTodo-button');
 
-todosObject.toggleCompleted(2);
-todosObject.toggleAll();
+displyTodoList.addEventListener('click',  () => {
+	todosObject.displayTodos();
+});
 
-//todosObject.toggleAll();
+
