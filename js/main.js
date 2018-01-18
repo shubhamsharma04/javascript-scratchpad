@@ -79,6 +79,20 @@ let handlers = {
 		changedTodoPositionInput.value = '';
 	},
 	
+	toggleTodos : function () {
+		let toggleTodoPositionInput = document.getElementById('toggle-position');
+		let toggleTodoPosition = toggleTodoPositionInput.value;
+		
+		let numTodos = todosObject.todos.length;
+		
+		if(toggleTodoPosition && toggleTodoPosition >= 0 && toggleTodoPosition < numTodos) {
+			todosObject.toggleCompleted(  toggleTodoPosition);
+			
+			
+		}
+		toggleTodoPositionInput.value='';
+	},
+	
 	deleteTodos : function () {
 		let deleteTodoPositionInput = document.getElementById('delete-position');
 		let deleteTodoPosition = deleteTodoPositionInput.value;
