@@ -77,6 +77,20 @@ let handlers = {
 		}
 		changedTodoTextInput.value='';
 		changedTodoPositionInput.value = '';
+	},
+	
+	deleteTodos : function () {
+		let deleteTodoPositionInput = document.getElementById('delete-position');
+		let deleteTodoPosition = deleteTodoPositionInput.value;
+		
+		let numTodos = todosObject.todos.length;
+		
+		if(deleteTodoPosition && deleteTodoPosition >= 0 && deleteTodoPosition < numTodos) {
+			todosObject.deleteTodos(  deleteTodoPosition);
+			
+			
+		}
+		deleteTodoPositionInput.value='';
 	}
 }
 
