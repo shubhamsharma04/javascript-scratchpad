@@ -15,7 +15,6 @@ displayTodos () {
 
 addTodos  (todoText) {
 	this.todos.push({todoText : todoText, isComplete : false});
-	this.displayTodos();
 },
 
 changeTodos (position,todoText) {
@@ -49,7 +48,18 @@ toggleAll(){
 
 let handlers = {
 	displayTodos : () => {todosObject.displayTodos()},
-	toggleAllTodos : () => {todosObject.toggleAll()}
+	toggleAllTodos : () => {todosObject.toggleAll()},
+	
+	addTodos : function (){
+		
+		let todoTextInput = document.getElementById('todo-text');
+		let todoText = todoTextInput.value.trim();
+		
+		if(todoText){
+			todosObject.addTodos(todoText);
+			todoTextInput.value = '';
+		}
+	}
 }
 
 
