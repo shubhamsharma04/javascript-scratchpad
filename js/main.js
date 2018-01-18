@@ -42,25 +42,14 @@ toggleAll(){
 		this.todos.forEach(todo => todo.isComplete = false)
 	} else {
 		this.todos.forEach(todo => todo.isComplete = true)
-	
-	
-
 }
-	this.displayTodos();
+
 }
 }
 
-
-let displyTodoList = document.getElementById('displayTodo-button');
-
-displyTodoList.addEventListener('click',  () => {
-	todosObject.displayTodos();
-});
-
-let toggleAllTodoList = document.getElementById('toggleAllTodo-button');
-
-toggleAllTodoList.addEventListener('click',  () => {
-	todosObject.toggleAll();
-});
+let handlers = {
+	displayTodos : () => {todosObject.displayTodos()},
+	toggleAllTodos : () => {todosObject.toggleAll()}
+}
 
 
