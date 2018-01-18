@@ -1,7 +1,7 @@
 
 let todosObject ={
 	
-todos : [{todoText:'item1',isComplete :false},{todoText:'item2',isComplete :false},{todoText:'item3',isComplete :false}],
+todos : [],
 
 displayTodos () {
 	let numTodos = this.todos.length;
