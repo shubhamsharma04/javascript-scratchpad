@@ -59,6 +59,24 @@ let handlers = {
 			todosObject.addTodos(todoText);
 			todoTextInput.value = '';
 		}
+	},
+	
+	changeTodos : function() {
+		let changedTodoTextInput = document.getElementById('todo-change-text');
+		let changedTodoText = changedTodoTextInput.value.trim();
+		
+		let changedTodoPositionInput = document.getElementById('todo-change-position');
+		let changedTodoPosition = changedTodoPositionInput.value;
+		
+		let numTodos = todosObject.todos.length;
+		
+		if(changedTodoText && changedTodoPosition && changedTodoPosition >= 0 && changedTodoPosition < numTodos) {
+			todosObject.changeTodos(  changedTodoPosition, changedTodoText);
+			
+			
+		}
+		changedTodoTextInput.value='';
+		changedTodoPositionInput.value = '';
 	}
 }
 
