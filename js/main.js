@@ -35,7 +35,12 @@ toggleAll(){
 
 let handlers = {
 	displayTodos : () => {view.displayTodos()},
-	toggleAllTodos : () => {todosObject.toggleAll()},
+	
+	toggleAllTodos : function() {
+		
+		todosObject.toggleAll();
+		this.displayTodos();
+	},
 	
 	addTodos : function (){
 		
@@ -105,10 +110,20 @@ let view = {
 		todosUL.innerHTML = '';
 		
 		let numTodos = todosObject.todos.length;
+		const completedPrefix = "( x ) ";
+		const nonCompletedPrefix = "( ) ";
 		
 		for(let i=0;i < numTodos ;i++){
 			let node = document.createElement('li');
-			let textNode = document.createTextNode(todosObject.todos[i].todoText);
+			let textValue = "";
+			
+			if(todosObject.todos[i].isComplete){
+				textValue = completedPrefix.concat(todosObject.todos[i].todoText);
+			} else {
+				textValue = nonCompletedPrefix.concat(todosObject.todos[i].todoText);
+			}
+			
+			let textNode = document.createTextNode(textValue);
 			
 			node.appendChild(textNode);
 			todosUL.appendChild(node);
