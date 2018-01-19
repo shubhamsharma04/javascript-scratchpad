@@ -3,33 +3,20 @@ let todosObject ={
 	
 todos : [],
 
-displayTodos () {
-	let numTodos = this.todos.length;
-	
-	if(numTodos){
-	this.todos.forEach(todo => console.log(todo.isComplete,todo.todoText))
-	} else {
-		console.log("No Todos");
-	}
-},
-
 addTodos  (todoText) {
 	this.todos.push({todoText : todoText, isComplete : false});
 },
 
 changeTodos (position,todoText) {
 	this.todos[position].todoText = todoText;
-	this.displayTodos();
 },
 
 deleteTodos (position) {
 	this.todos.splice(position,1);
-	this.displayTodos();
 },
 
 toggleCompleted (position) {
 	this.todos[position].isComplete = true;
-	this.displayTodos();
 },
 
 toggleAll(){
@@ -47,7 +34,7 @@ toggleAll(){
 }
 
 let handlers = {
-	displayTodos : () => {todosObject.displayTodos()},
+	displayTodos : () => {view.displayTodos()},
 	toggleAllTodos : () => {todosObject.toggleAll()},
 	
 	addTodos : function (){
@@ -59,6 +46,7 @@ let handlers = {
 			todosObject.addTodos(todoText);
 			todoTextInput.value = '';
 		}
+		this.displayTodos();
 	},
 	
 	changeTodos : function() {
@@ -77,6 +65,7 @@ let handlers = {
 		}
 		changedTodoTextInput.value='';
 		changedTodoPositionInput.value = '';
+		this.displayTodos();
 	},
 	
 	toggleTodos : function () {
@@ -91,6 +80,7 @@ let handlers = {
 			
 		}
 		toggleTodoPositionInput.value='';
+		this.displayTodos();
 	},
 	
 	deleteTodos : function () {
@@ -105,6 +95,24 @@ let handlers = {
 			
 		}
 		deleteTodoPositionInput.value='';
+		this.displayTodos();
+	}
+}
+
+let view = {
+	displayTodos : function () {
+		let todosUL = document.querySelector('ul');
+		todosUL.innerHTML = '';
+		
+		let numTodos = todosObject.todos.length;
+		
+		for(let i=0;i < numTodos ;i++){
+			let node = document.createElement('li');
+			let textNode = document.createTextNode(todosObject.todos[i].todoText);
+			
+			node.appendChild(textNode);
+			todosUL.appendChild(node);
+		}
 	}
 }
 
