@@ -39,7 +39,7 @@ let handlers = {
 	toggleAllTodos : function() {
 		
 		todosObject.toggleAll();
-		this.displayTodos();
+		view.displayTodos();
 	},
 	
 	addTodos : function (){
@@ -51,7 +51,7 @@ let handlers = {
 			todosObject.addTodos(todoText);
 			todoTextInput.value = '';
 		}
-		this.displayTodos();
+		view.displayTodos();
 	},
 	
 	changeTodos : function() {
@@ -70,7 +70,7 @@ let handlers = {
 		}
 		changedTodoTextInput.value='';
 		changedTodoPositionInput.value = '';
-		this.displayTodos();
+		view.displayTodos();
 	},
 	
 	toggleTodos : function () {
@@ -85,22 +85,12 @@ let handlers = {
 			
 		}
 		toggleTodoPositionInput.value='';
-		this.displayTodos();
+		view.displayTodos();
 	},
 	
-	deleteTodos : function () {
-		let deleteTodoPositionInput = document.getElementById('delete-position');
-		let deleteTodoPosition = deleteTodoPositionInput.value;
-		
-		let numTodos = todosObject.todos.length;
-		
-		if(deleteTodoPosition && deleteTodoPosition >= 0 && deleteTodoPosition < numTodos) {
-			todosObject.deleteTodos(  deleteTodoPosition);
-			
-			
-		}
-		deleteTodoPositionInput.value='';
-		this.displayTodos();
+	deleteTodos : function (deleteTodoPosition) {
+		todosObject.deleteTodos(  deleteTodoPosition);
+		view.displayTodos();
 	}
 }
 
@@ -126,6 +116,17 @@ let view = {
 			let textNode = document.createTextNode(textValue);
 			
 			node.appendChild(textNode);
+			
+			let deleteButton = document.createElement('button');
+			let deleteText = document.createTextNode("DELETE");
+			
+			deleteButton.appendChild(deleteText);
+			node.appendChild(deleteButton);
+			
+			let id = "delButton-".concat(i);
+			
+			deleteButton.setAttribute("id",id);
+			deleteButton.addEventListener('click', function(){handlers.deleteTodos(i)});
 			todosUL.appendChild(node);
 		}
 	}
